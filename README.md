@@ -49,7 +49,7 @@ If you have problems installing the package, please try to install necessary pac
 install.packages(c("scam","Seurat","dplyr","plotly","resample","fields","patchwork","ggplot2","boot","xgboost","rayshader", "rayrender","knitr","rmarkdown","tidyr","knitr"))
 ```
 
-## How to use 'PoweREST'
+## How to use PoweREST
 Detailed steps are introduced in [Tutorial](https://lanshui98.github.io/powerest_tutorial/).
 
 The package manual is availible [here](PoweREST_0.1.0.pdf).
