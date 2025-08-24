@@ -1,3 +1,5 @@
+^renv$
+^renv\.lock$
 ^PoweREST\.Rproj$
 ^\.Rproj\.user$
 ^_pkgdown\.yml$
