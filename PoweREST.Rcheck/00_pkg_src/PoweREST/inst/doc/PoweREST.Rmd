@@ -26,7 +26,6 @@ Once installed, **`PoweREST`** can be simply loaded (along with the required pac
 #----or
 #install.packages("PoweREST")
 library(PoweREST)
-#Package Seurat is required for this document
 ```
 
 ## Prepare data
@@ -36,7 +35,7 @@ library(PoweREST)
 three_areas <- readRDS("your path to/GSE233293_scMC.all.3areas.final")
 Idents(three_areas)
 #Levels: Peri Juxta Epi
-SeuratObject_splitlist<-SplitObject(three_areas, split.by = "ident")
+SeuratObject_splitlist<-Seurat::SplitObject(three_areas, split.by = "ident")
 
 #split the ST data into three areas
 for (i in 1:length(SeuratObject_splitlist)) {
@@ -44,7 +43,7 @@ for (i in 1:length(SeuratObject_splitlist)) {
 }
 
 for (i in 1:length(SeuratObject_splitlist)) {
-  Idents(SeuratObject_splitlist[[i]])<-"Condition"
+  Seurat::Idents(SeuratObject_splitlist[[i]])<-"Condition"
 }
 
 # Take Peri area for example for downstream analysis

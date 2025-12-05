@@ -26,6 +26,7 @@ data(result_example)
  \donttest{b<-fit_powerest(result_example$power,result_example$avg_logFC,result_example$avg_PCT)}
  \donttest{pred <- pred_powerest(b,xlim= c(0,6),ylim=c(0,1))}
  \donttest{plotly_powerest(pred,fig_title='Power estimation result')}
+
 }
 \author{
 Lan Shui \email{lshui@mdanderson.org}

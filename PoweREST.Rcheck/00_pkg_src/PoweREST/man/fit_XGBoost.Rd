@@ -5,7 +5,7 @@
 \title{Fit with XGBoost}
 \usage{
 fit_XGBoost(power,avg_log2FC,avg_PCT,replicates,filter_zero=TRUE,
-max_depth=6,learning_rate=0.3,nround=100)
+max.depth=6,eta=0.3,nround=100)
 }
 \arguments{
 \item{power}{The raw power values.}
@@ -18,9 +18,9 @@ max_depth=6,learning_rate=0.3,nround=100)
 
 \item{filter_zero}{Whether the user would like to filter to remove the power values being 0. Default=TRUE.}
 
-\item{max_depth}{Maximum depth of a tree. Default=6.}
+\item{max.depth}{Maximum depth of a tree. Default=6.}
 
-\item{learning_rate}{Control the learning rate: scale the contribution of each tree by a factor of 0 < learning_rate < 1 when it is added to the current approximation. Used to prevent overfitting by making the boosting process more conservative. Default=0.3.}
+\item{eta}{control the learning rate: scale the contribution of each tree by a factor of 0 < eta < 1 when it is added to the current approximation. Used to prevent overfitting by making the boosting process more conservative. Default=0.3.}
 
 \item{nround}{Max number of boosting iterations.}
 }

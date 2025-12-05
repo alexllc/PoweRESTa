@@ -14,22 +14,14 @@
 #'  \donttest{b<-fit_powerest(result_example$power,result_example$avg_logFC,result_example$avg_PCT)}
 #'  \donttest{pred <- pred_powerest(b,xlim= c(0,6),ylim=c(0,1))}
 #'  \donttest{plotly_powerest(pred,fig_title='Power estimation result')}
-#' @importFrom utils getFromNamespace
 #'
 #' @author Lan Shui \email{lshui@@mdanderson.org}
 
 plotly_powerest <- function(pred,opacity=0.8,colors='BrBG',fig_title=NULL){
-  if (!requireNamespace("plotly", quietly = TRUE)) {
-  stop("Package 'plotly' is required for this function but not installed.", call. = FALSE)
-  }
-
-  plot_ly  <- getFromNamespace("plot_ly", "plotly")
-  layout   <- getFromNamespace("layout",  "plotly")
-
-  fig <- plot_ly(x = pred$x, y = pred$y, z = pred$z,type = "surface",opacity = opacity,colors=colors)
-  fig <- fig %>% layout(scene=list(xaxis = list(title = "Absolute value of logFC"),
+  fig <- plotly::plot_ly(x = pred$x, y = pred$y, z = pred$z,type = "surface",opacity = opacity,colors=colors)
+  fig <- fig %>% plotly::layout(scene=list(xaxis = list(title = "Absolute value of logFC"),
                                    yaxis = list(title = "Mean Percentage"),
                                    zaxis = list(title = "Power")))
-  fig <- fig %>% layout(coloraxis=list(range=c(0,1)),title=list(text=fig_title), legend=list(title="Power"))
+  fig <- fig %>% plotly::layout(coloraxis=list(range=c(0,1)),title=list(text=fig_title), legend=list(title="Power"))
   return(fig)
 }

@@ -10,7 +10,6 @@
 #' @param xlab The name of xlab, default='avg_log2FC_abs'.
 #' @param ylab The name of ylab, default='mean_pct'.
 #' @importFrom ggplot2 ggplot
-#' @importFrom utils getFromNamespace
 #'
 #' @return A 2D/3D plot of the power results from XGBoost.
 #' @export
@@ -28,16 +27,8 @@
 #'
 #' @author Lan Shui \email{lshui@@mdanderson.org}
 #'
-
 vis_XGBoost <- function(x,view='2D',legend_name='Power',xlab='avg_log2FC_abs',ylab='mean_pct')
 {
-  if (!requireNamespace("rayshader", quietly = TRUE)) {
-  stop("Package 'rayshader' is required for this function but not installed.", call. = FALSE)
-  }
-
-  plot_gg <- getFromNamespace("plot_gg", "rayshader")
-  render_snapshot <- getFromNamespace("render_snapshot", "rayshader")
-
   if (!view %in% c("2D","3D"))
   {stop("The view name must be one of '2D' or '3D'.")}
 
@@ -54,13 +45,13 @@ vis_XGBoost <- function(x,view='2D',legend_name='Power',xlab='avg_log2FC_abs',yl
   eval(parse(text=txt2))
 
   if (view=='2D'){
-    txt3<-'plot_gg(mtplot, width = 3.5, raytrace = FALSE, preview = TRUE, pointcontract = 1)'
+    txt3<-'rayshader::plot_gg(mtplot, width = 3.5, raytrace = FALSE, preview = TRUE, pointcontract = 1)'
     eval(parse(text=txt3))
   }
   else{
-    txt4<-'plot_gg(mtplot, width = 3.5, multicore = TRUE, windowsize = c(800, 800),
+    txt4<-'rayshader::plot_gg(mtplot, width = 3.5, multicore = TRUE, windowsize = c(800, 800),
             zoom = 0.85, phi = 45, theta = 30, sunangle = 225, pointcontract = 1)'
     eval(parse(text=txt4))
-    render_snapshot(clear = TRUE)
+    rayshader::render_snapshot(clear = TRUE)
   }
 }

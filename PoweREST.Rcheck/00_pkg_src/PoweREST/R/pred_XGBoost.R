@@ -36,11 +36,11 @@ pred_XGBoost <- function(x,n.grid=30,xlim,ylim,replicates)
   X_scan[,1] = rep(x1,rep(n.grid,n.grid))
   X_scan[,2] = rep(replicates,n.grid^2)
 
-  # Set column names for reference (matrix column names are preserved)
-  colnames(X_scan) <- c('avg_PCT','replicates','avg_log2FC_abs')
+  X_plot = dplyr::as_tibble(X_scan)
+  colnames(X_plot)<-c('avg_PCT','replicates','avg_log2FC_abs')
 
-  # Use predict directly with matrix, not xgb.DMatrix
-  y_plot = predict(x, X_scan)
+  X_plot = xgboost::xgb.DMatrix(as.matrix(X_plot))
+  y_plot = predict(x, X_plot)
   y_plot = exp(y_plot)/(1+exp(y_plot))
 
   data<-dplyr::data_frame(avg_PCT=X_scan[,1],
