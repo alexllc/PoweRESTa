@@ -1,8 +1,8 @@
 Package: PoweREST
 Title: A Bootstrap-Based Power Estimation Tool for Spatial Transcriptomics
-Version: 0.1.1
+Version: 0.1.2
 Imports: scam, dplyr, resample, xgboost, magrittr, ggplot2
-Suggests: patchwork, boot, knitr, rmarkdown, fields, rayrender, tidyr, plotly, rayshader, Seurat
+Suggests: patchwork, boot, fields, rayrender, tidyr, plotly, rayshader, Seurat, knitr, rmarkdown
 Author: Lan Shui [aut, cre] (<https://orcid.org/0000-0002-2719-842X>)
 Maintainer: Lan Shui <Lan.Shui@uth.tmc.edu>
 Authors@R: 

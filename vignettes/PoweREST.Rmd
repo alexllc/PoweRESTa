@@ -26,7 +26,6 @@ Once installed, **`PoweREST`** can be simply loaded (along with the required pac
 #----or
 #install.packages("PoweREST")
 library(PoweREST)
-#Package Seurat is required for this document
 ```
 
 ## Prepare data

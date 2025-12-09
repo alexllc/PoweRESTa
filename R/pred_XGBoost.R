@@ -38,7 +38,7 @@ pred_XGBoost <- function(x,n.grid=30,xlim,ylim,replicates)
 
   # Set column names for reference (matrix column names are preserved)
   colnames(X_scan) <- c('avg_PCT','replicates','avg_log2FC_abs')
-
+  
   # Use predict directly with matrix, not xgb.DMatrix
   y_plot = predict(x, X_scan)
   y_plot = exp(y_plot)/(1+exp(y_plot))

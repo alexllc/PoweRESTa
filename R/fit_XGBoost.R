@@ -5,7 +5,7 @@
 #' used for estimating local power values.
 #'
 #' @usage fit_XGBoost(power,avg_log2FC,avg_PCT,replicates,filter_zero=TRUE,
-#' max_depth=6,learning_rate=0.3,nround=100)
+#' max_depth=6,learning_rate=0.3,nrounds=100)
 #' @param power The raw power values.
 #' @param avg_log2FC The corresponding log2FC values.
 #' @param avg_PCT The corresponding PCT values.
@@ -13,7 +13,7 @@
 #' @param filter_zero Whether the user would like to filter to remove the power values being 0. Default=TRUE.
 #' @param max_depth Maximum depth of a tree. Default=6.
 #' @param learning_rate Control the learning rate: scale the contribution of each tree by a factor of 0 < learning_rate < 1 when it is added to the current approximation. Used to prevent overfitting by making the boosting process more conservative. Default=0.3.
-#' @param nround Max number of boosting iterations.
+#' @param nrounds Max number of boosting iterations.
 #'
 #' @return A object of class 'xgb.Booster'. More information about the content of a 'xgb.Booster' object can be found
 #' at the document of R package \href{https://CRAN.R-project.org/package=xgboost}{xgboost}.
@@ -29,7 +29,7 @@
 #'
 #' @author Lan Shui \email{lshui@@mdanderson.org}
 
-fit_XGBoost <- function(power,avg_log2FC,avg_PCT,replicates,filter_zero=TRUE,max_depth=6,learning_rate=0.3,nround=100)
+fit_XGBoost <- function(power,avg_log2FC,avg_PCT,replicates,filter_zero=TRUE,max_depth=6,learning_rate=0.3,nrounds=100)
 {
   data<-data.frame(power=power,avg_log2FC=avg_log2FC,avg_PCT=avg_PCT,replicates=replicates)
   if (filter_zero==TRUE)
@@ -54,7 +54,7 @@ fit_XGBoost <- function(power,avg_log2FC,avg_PCT,replicates,filter_zero=TRUE,max
                  max_depth = max_depth,
                  learning_rate = learning_rate,
                  monotone_constraints = monotonic_constraints,
-                 nround = nround,
+                 nrounds = nrounds,
                  objective = "reg:squarederror")
 
   return(bst)
