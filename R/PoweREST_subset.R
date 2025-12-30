@@ -37,7 +37,11 @@ PoweREST_subset <- function(Seurat_obj,cond,replicates=1,spots_num,iteration=100
   stop("Package 'Seurat' is required for this function but not installed.", call. = FALSE) }
 
   FindMarkers <- getFromNamespace("FindMarkers", "Seurat")
-  subset_Seurat <- getFromNamespace("subset.Seurat", "Seurat")
+  subset_Seurat <- getS3method("subset", "Seurat", optional = TRUE)
+  if (is.null(subset_Seurat)) {
+    if (requireNamespace("Seurat", quietly = TRUE) && exists("subset", envir = asNamespace("Seurat"))) {
+      subset_Seurat <- get("subset", envir = asNamespace("Seurat"))
+  }
 
   dnm <- names(list(...))
 
