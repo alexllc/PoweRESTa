@@ -79,15 +79,15 @@ PoweREST_subset <- function(Seurat_obj,cond,replicates=1,spots_num,iteration=100
   sampling2<-resample::samp.bootstrap(spots_condition2, n1, size=n2)
   txt<-paste("Seurat_obj[['PoweREST_Group']]<-0")
   eval(parse(text=txt))
-  gene_set<-Seurat_obj@assays$Spatial$data@Dimnames[[1]]
-  pvalue<-matrix(data=NA, nrow =dim(Seurat_obj@assays$Spatial@counts)[1] , ncol= 2)
+  gene_set<-Seurat_obj[["Spatial"]]$data@Dimnames[[1]]
+  pvalue<-matrix(data=NA, nrow =dim(Seurat_obj[["Spatial"]]$counts)[1] , ncol= 2)
   pvalue<-as.data.frame(pvalue)
   gene<-NULL
   pvalue$gene<-sort(gene_set)
-  logFC<-matrix(data=NA, nrow =dim(Seurat_obj@assays$Spatial@counts)[1] , ncol= 2)
+  logFC<-matrix(data=NA, nrow =dim(Seurat_obj[["Spatial"]]$counts)[1] , ncol= 2)
   logFC<-as.data.frame(logFC)
   logFC$gene<-sort(gene_set)
-  PCT<-matrix(data=NA, nrow = dim(Seurat_obj@assays$Spatial@counts)[1], ncol= 2)
+  PCT<-matrix(data=NA, nrow = dim(Seurat_obj[["Spatial"]]$counts)[1], ncol= 2)
   PCT<-as.data.frame(PCT)
   PCT$gene<-sort(gene_set)
 
