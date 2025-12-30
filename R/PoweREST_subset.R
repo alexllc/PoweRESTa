@@ -41,6 +41,7 @@ PoweREST_subset <- function(Seurat_obj,cond,replicates=1,spots_num,iteration=100
   if (is.null(subset_Seurat)) {
     if (requireNamespace("Seurat", quietly = TRUE) && exists("subset", envir = asNamespace("Seurat"))) {
       subset_Seurat <- get("subset", envir = asNamespace("Seurat"))
+      }
   }
 
   dnm <- names(list(...))
